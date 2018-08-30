@@ -10,5 +10,5 @@ export class HomePage {
   constructor(public navCtrl: NavController,public menuCtrl: MenuController) {
     menuCtrl.enable(false);
   }
-
+  
 }
