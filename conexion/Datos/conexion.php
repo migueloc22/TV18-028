@@ -11,7 +11,7 @@ class conexion
       {   
             $this->user="root";
             $this->pass="";
-            $this->data="vethouse_bd";
+            $this->data="spapp";
             $this->servidor="localhost";
             $this->cnn= mysqli_connect($this->servidor,$this->user,$this->pass,$this->data);
             mysqli_set_charset($this->cnn, "utf8");
