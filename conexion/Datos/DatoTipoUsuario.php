@@ -10,7 +10,7 @@ class DatoTipoUsuario{
         }
         function CargarTipoUsuario(){
             
-            $Query = "SELECT * FROM tipousuario";
+            $Query = "SELECT * FROM rol_usuario";
             $result = mysqli_query($this->cnn,$Query);
             $array_tipoUser = array();
 

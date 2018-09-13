@@ -14,6 +14,7 @@ class conexion
             $this->data="spapp";
             $this->servidor="localhost";
             $this->cnn= mysqli_connect($this->servidor,$this->user,$this->pass,$this->data);
+            
             mysqli_set_charset($this->cnn, "utf8");
             //echo mysqli_error($this->cnn);
       }

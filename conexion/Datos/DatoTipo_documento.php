@@ -10,7 +10,7 @@ class DatoTipoDocumento{
         }
         function CargarTipoDocu(){
             
-            $Query = "SELECT * FROM tipodocumento";
+            $Query = "SELECT * FROM tipo_documento";
             $result = mysqli_query($this->cnn,$Query);
             $array_tipoDocu = array();
 

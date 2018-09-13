@@ -5,32 +5,35 @@ header("Access-Control-Allow-Methods: PUT, GET, POST");
 header('Content-Type: application/x-www-form-urlencoded');
 header('Content-Type: application/json'); 
 include "..\Datos\DatoUsuario.php";
+include "util.php";
 $dtUsuario = new DatoUsuario();
 $postdata = file_get_contents("php://input");
 if (isset($postdata)) {
     $request = json_decode($postdata);
     $option = $request->option;
     switch ($option) {
-        case 'AgregarUsuario':
-            $IdTipoUsuario=$request->IdTipoUsuario;
-            $IdTipoDocu=$request->IdTipoDocu;
-            $NumDocumento=$request->NumDocumento;
-            $NombresUsu=$request->NombresUsu;
-            $ApellidosUsu=$request->ApellidosUsu;
-            $GeneroUsu=$request->GeneroUsu;
-            $FechaNacUsu=$request->FechaNacUsu;
-            $CorreoUsu=$request->CorreoUsu;
-            $PassUsu=$request->PassUsu;
-            $CelUsu=$request->CelUsu;
-            $FechRegUsu="2018-07-07";
-            $FotoUsu=$request->FotoUsu;
-            $IdCiudad=$request->IdCiudad;
-            $FirmaDoc=$request->FirmaDoc;
-            $TarjetaDoc=$request->TarjetaDoc;
-            $EstadoUsuario="activo";
-            $LatitudUsu="2093";
-            $LongitudUsu="6372";
-            $csUsuario=new CsUsuario($IdTipoUsuario,$IdTipoDocu,$NumDocumento,$NombresUsu,$ApellidosUsu,$GeneroUsu,$FechaNacUsu,$CorreoUsu,$PassUsu,$CelUsu,$FechRegUsu,$FotoUsu,$IdCiudad,$FirmaDoc,$TarjetaDoc,$EstadoUsuario,$LatitudUsu,$LongitudUsu);
+        case 'CrearUsuario':
+            $num_documento=$request->num_documento;
+            $nombre=$request->nombre;
+            $apellido=$request->apellido;
+            $correo=$request->correo;
+            $fecha_nac=$request->fecha_nac;
+            $fecha_registro=date("Y-m-d");
+            $hora_registro=date("H:i:s");
+            $direccion=$request->direccion;
+            $contrasena=util::encrypt ( $request->contrasena) ;
+            $celular=$request->celular;
+            $latitud=null;
+            $longitud=null;
+            $foto=$request->foto;
+            $hoja_vida=null;
+            $certificacion_estudio=null;
+            $fk_id_rol_usuario=null;
+            $fk_id_tipo_doc=$request->fk_id_tipo_doc;
+            $fk_id_ciudad=$request->fk_id_ciudad;
+            $fk_estado_usuario=null; 
+            
+            $csUsuario=new CsUsuario( $num_documento, $nombre, $apellido, $correo, $fecha_nac, $fecha_registro, $hora_registro, $direccion, $contrasena, $celular, $latitud, $longitud, $foto, $hoja_vida, $certificacion_estudio, $fk_id_rol_usuario, $fk_id_tipo_doc, $fk_id_ciudad, $fk_estado_usuario);
             $dtUsuario->AgregarUsuario($csUsuario);
         break;
 

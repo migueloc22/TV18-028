@@ -4,7 +4,7 @@ header('Access-Control-Allow-Headers: *');
 header("Access-Control-Allow-Methods: PUT, GET, POST");
 header('Content-Type: application/x-www-form-urlencoded');
 header('Content-Type: application/json');
-include "..\Datos\DatoTipoDocumento.php";
+include "..\Datos\DatoTipo_documento.php";
 $DatoTipoDocumento = new DatoTipoDocumento();
 $postdata = file_get_contents("php://input");
     if (isset($postdata)) {

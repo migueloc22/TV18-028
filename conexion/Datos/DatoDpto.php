@@ -17,7 +17,7 @@ class DatoDpto{
 
             while($data = mysqli_fetch_assoc($result)){
                 
-                html_entity_decode($data['Depto']);
+                html_entity_decode($data['depto']);
 
                 $array_dpto[]=$data;
             }

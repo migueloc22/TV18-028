@@ -12,7 +12,7 @@ class DatoCiudad{
 
     
             
-            $Query = "SELECT * FROM ciudad WHERE IdDepto=$idDpto ";
+            $Query = "SELECT * FROM ciudad WHERE fk_id_Depto=$idDpto ";
             $result = mysqli_query($this->cnn,$Query);
             $array_Ciudad = array();
 
