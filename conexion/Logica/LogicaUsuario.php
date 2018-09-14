@@ -7,6 +7,7 @@ header('Content-Type: application/json');
 include "..\Datos\DatoUsuario.php";
 include "util.php";
 $dtUsuario = new DatoUsuario();
+$util = new util();
 $postdata = file_get_contents("php://input");
 if (isset($postdata)) {
     $request = json_decode($postdata);
@@ -21,26 +22,26 @@ if (isset($postdata)) {
             $fecha_registro=date("Y-m-d");
             $hora_registro=date("H:i:s");
             $direccion=$request->direccion;
-            $contrasena=util::encrypt ( $request->contrasena) ;
+            $contrasena=$util->encode ( $request->contrasena) ;
             $celular=$request->celular;
             $latitud=null;
             $longitud=null;
             $foto=$request->foto;
-            $hoja_vida=null;
-            $certificacion_estudio=null;
-            $fk_id_rol_usuario=null;
+            $hoja_vida='0';
+            $certificacion_estudio='0';
+            $fk_id_rol_usuario='1';
             $fk_id_tipo_doc=$request->fk_id_tipo_doc;
             $fk_id_ciudad=$request->fk_id_ciudad;
-            $fk_estado_usuario=null; 
+            $fk_estado_usuario='1'; 
             
             $csUsuario=new CsUsuario( $num_documento, $nombre, $apellido, $correo, $fecha_nac, $fecha_registro, $hora_registro, $direccion, $contrasena, $celular, $latitud, $longitud, $foto, $hoja_vida, $certificacion_estudio, $fk_id_rol_usuario, $fk_id_tipo_doc, $fk_id_ciudad, $fk_estado_usuario);
             $dtUsuario->AgregarUsuario($csUsuario);
         break;
 
         case 'logueoUser':
-            $CorreoUsu=$request->Correo;
-            $PassUsu=$request->Contrasena;
-            $dtUsuario->logueoUser($CorreoUsu,$PassUsu);
+            $num_documento=$request->num_documento;
+            $PassUsu=$util->encode ( $request->contrasena) ;
+            $dtUsuario->logueoUser($num_documento,$PassUsu);
         
         break;
         

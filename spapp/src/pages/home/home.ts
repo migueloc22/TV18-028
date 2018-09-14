@@ -16,6 +16,6 @@ export class HomePage {
     this.navCtrl.push(CrearCuentaPage);
   }
   onclick2(){
-    this.navCtrl.setRoot(LoginPage);
+    this.navCtrl.push(LoginPage);
   }
 }

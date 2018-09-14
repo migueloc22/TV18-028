@@ -1,4 +1,36 @@
-<ion-menu [content]="content">
+<ion-menu id='Tomador' [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Tomador</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages_tomador" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+<ion-menu id='Prestador' [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Prestador</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages_Prestador" (click)="openPage_Prestador(p)">
+        {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+<ion-menu id='Admin' [content]="content">
   <ion-header>
     <ion-toolbar>
       <ion-title>Menu</ion-title>
@@ -7,7 +39,7 @@
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <button menuClose ion-item *ngFor="let p of pages_Admin" (click)="openPage_Admin(p)">
         {{p.title}}
       </button>
     </ion-list>

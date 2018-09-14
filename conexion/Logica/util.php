@@ -1,15 +1,22 @@
 <?php
     class util
     {
-        private static $Key = "CLAVESUPERSECRETA";
- 
-    public static function encrypt ($string) {
-        return base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5(Enigma::$Key), $string, MCRYPT_MODE_CBC, md5(md5(Enigma::$Key))));
-    }
+        public $skey = "yourSecretKey"; // you can change it
 
-    public static function decrypt ($string) {
-        return rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5(Enigma::$Key), base64_decode($string), MCRYPT_MODE_CBC, md5(md5(Enigma::$Key))), "\0");
-    }
+        
+        public  function encode($value){ 
+            $hash = crypt($value,$this->skey);
+            return $hash;
+        }
+
+        public function decode($value){
+            if(!$value){return false;}
+            $crypttext = $this->safe_b64decode($value); 
+            $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB);
+            $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
+            $decrypttext = mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $this->skey, $crypttext, MCRYPT_MODE_ECB, $iv);
+            return trim($decrypttext);
+        }
 
     }
 ?>

@@ -7,7 +7,16 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import {CrearCuentaPage} from '../pages/crear-cuenta/crear-cuenta';
 import {LoginPage} from '../pages/login/login';
+import {IndexAdminPage} from '../pages/index-admin/index-admin';
+import {IndexPrestadorPage} from '../pages/index-prestador/index-prestador';
+import {IndexTomadorPage} from '../pages/index-tomador/index-tomador';
+import {CitasPage} from '../pages/citas/citas';
+import {IngresosPage} from '../pages/ingresos/ingresos';
+import {ConfiguracionPage} from '../pages/configuracion/configuracion';
+import {ReportePage} from '../pages/reporte/reporte';
+import {UsuarioPage} from '../pages/usuario/usuario';
 
+// api
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ServiceSpappProvider } from '../providers/service-spapp/service-spapp'; 
@@ -26,7 +35,15 @@ import { File } from '@ionic-native/file';
     ListPage,
     CrearCuentaPage,
     LoginPage,
-    
+    IndexAdminPage,
+    IndexPrestadorPage,
+    IndexTomadorPage,
+    CitasPage,
+    IngresosPage,
+    ConfiguracionPage,
+    ReportePage,
+    UsuarioPage
+
   ],
   imports: [
     BrowserModule,
@@ -40,7 +57,15 @@ import { File } from '@ionic-native/file';
     HomePage,
     ListPage,
     CrearCuentaPage,
-    LoginPage
+    LoginPage,
+    IndexAdminPage,
+    IndexPrestadorPage,
+    IndexTomadorPage,
+    CitasPage,
+    IngresosPage,
+    ConfiguracionPage,
+    ReportePage,
+    UsuarioPage
   ],
   providers: [
     StatusBar,

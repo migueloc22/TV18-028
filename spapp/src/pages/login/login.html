@@ -7,12 +7,30 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>login</ion-title>
+    <ion-title>Login</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-{{name}}
+  <form [formGroup]="profileForm" (ngSubmit)="loguear()">
+    <ion-list>
+      <ion-item>
+        <ion-label># documento</ion-label>
+        <ion-input formControlName="num_documento" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Contraseña</ion-label>
+        <ion-input formControlName="contrasena" type="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <p class="error">{{mensaje}}</p>
+      </ion-item>
+    </ion-list>
+    <div padding>
+      <button ion-button color="primary" block type="submit" [disabled]="!profileForm.valid"> Registrar</button>
+    </div>
+  </form>
+
 </ion-content>

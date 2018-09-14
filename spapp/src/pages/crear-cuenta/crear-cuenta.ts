@@ -124,7 +124,7 @@ export class CrearCuentaPage {
     return null;
   }
   cargarCiudad(){
-    console.log("estoy en la ciudad"+this.departamento);
+    //console.log("estoy en la ciudad"+this.departamento);
     this.service.ListarDatos2("LogicaCiudad.php",{option:"CargarCiuDpto",idDpto:this.departamento}).subscribe(data => {
       //console.log(data);
       this.ciudades=data;

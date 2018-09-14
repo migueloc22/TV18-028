@@ -105,9 +105,9 @@ class DatoUsuario{
     function BuscarUsuariof($filter){
         
     }
-    public function logueoUser($correo,$password){
+    public function logueoUser($num_documento,$password){
      
-        $Query = "SELECT * FROM usuarios WHERE CorreoUsu= '$correo' AND PassUsu='$password'";
+        $Query = "SELECT `num_documento`, `nombre`, `apellido`, `correo`, `fecha_nac`,  `direccion`,  `celular`, `foto`, `hoja_vida`, `certificacion_estudio`,  `fk_id_tipo_doc`, `fk_id_ciudad`, `fk_estado_usuario`,fk_id_rol_usuario FROM usuario WHERE num_documento= '$num_documento' AND contrasena='$password'";
             $result = mysqli_query($this->cnn,$Query);
             $array_dpto = array();
 
