@@ -44,6 +44,12 @@ if (isset($postdata)) {
             $dtUsuario->logueoUser($num_documento,$PassUsu);
         
         break;
+        case 'BuscarUsuario':
+            $num_documento=$request->num_documento;
+            $PassUsu=$util->encode ( $request->contrasena) ;
+            $dtUsuario->logueoUser($num_documento,$PassUsu);
+        
+        break;
         
         default:
             # code...

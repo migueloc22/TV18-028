@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "declaration": false,
+    "typeRoots": ["node_modules/@types"],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": [

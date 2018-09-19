@@ -12,15 +12,14 @@
     </button>
     <ion-title>indexTomador</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
   <ion-list>
     <ion-item>
-      <ion-label>Dirreción</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-label >Dirreción</ion-label>
+      <ion-input id="dir" type="text" autocorrect="off" autocapitalize="off" spellcheck="off" #search ></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Servicio</ion-label>
@@ -33,6 +32,10 @@
         <ion-option>Sausage</ion-option>
       </ion-select>
     </ion-item>
-    <button ion-button block>Buscar</button>
+    <button ion-button block (click)="marcarPin()">Buscar</button>
   </ion-list>
+    <!-- <div #map id="my-map"></div> -->
+    <agm-map [latitude]="lat" [longitude]="lng">
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
 </ion-content>

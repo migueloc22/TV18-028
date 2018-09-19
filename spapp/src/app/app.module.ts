@@ -26,6 +26,8 @@ import { HTTP } from '@ionic-native/http';
 import { Camera } from '@ionic-native/camera';
 import { Base64 } from '@ionic-native/base64';
 import { File } from '@ionic-native/file';
+import { AgmCoreModule } from '@agm/core';
+import { Geolocation } from '@ionic-native/geolocation';
 
 
 @NgModule({
@@ -49,7 +51,10 @@ import { File } from '@ionic-native/file';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBTDB7EYkVZtErCXBuj0dtjrmYogJsWgmA'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -75,7 +80,8 @@ import { File } from '@ionic-native/file';
     HTTP,
     Camera,
     Base64,
-    File
+    File,
+    Geolocation
   ]
 })
 export class AppModule {}

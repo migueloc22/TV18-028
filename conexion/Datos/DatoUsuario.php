@@ -92,7 +92,7 @@ class DatoUsuario{
     }
 
     function BuscarUsuario(){
-        $stmt = mysqli_prepare($this->cnn, "SELECT IdTipoUsuario, NumDocumento, NombresUsu, ApellidosUsu FROM usuarios");
+        $stmt = mysqli_prepare($this->cnn, "SELECT * FROM usuario");
        
         mysqli_stmt_execute($stmt);
 

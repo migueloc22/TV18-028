@@ -20,7 +20,7 @@ import {UsuarioPage} from '../pages/usuario/usuario';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any;
 
   pages_tomador: Array<{title: string, component: any}>;
   pages_Prestador: Array<{title: string, component: any}>;
@@ -47,7 +47,31 @@ export class MyApp {
       { title: 'Reporte', component: ReportePage },
       { title: 'Configuración', component: ConfiguracionPage }
     ];
+    if (localStorage.getItem("user")!=null) {
+      var lgUser=JSON.parse(localStorage.getItem("user"));
+      switch (lgUser.fk_id_rol_usuario) {
+        case "1":
+          //console.log("Tomador");
+           this.rootPage=IndexTomadorPage;
+          break;
+        case "2":
+          //console.log("Prestador";
+          this.rootPage=IndexPrestadorPage;
+          break;
+        case "3":
+          //console.log("Administrador";
+           this.rootPage=IndexAdminPage;
+          break;
 
+        default:
+        localStorage.removeItem("user");
+        this.rootPage = HomePage;
+          break;
+      }
+      
+    } else {
+      this.rootPage = HomePage;
+    }
   }
 
   initializeApp() {
@@ -63,6 +87,10 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(pages_tomador.component);
+  }
+  closeMenu(){
+    localStorage.removeItem("user");
+    this.nav.setRoot(HomePage);
   }
   openPage_Prestador(pages_Prestador) {
     // Reset the content nav to have just this page
