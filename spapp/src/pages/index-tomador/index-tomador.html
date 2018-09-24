@@ -10,32 +10,36 @@
     <button ion-button menuToggle icon-only>
       <ion-icon name='menu'></ion-icon>
     </button>
-    <ion-title>indexTomador</ion-title>
+    <ion-title>Buscar Tomadores</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-label >Dirreción</ion-label>
-      <ion-input id="dir" type="text" autocorrect="off" autocapitalize="off" spellcheck="off" #search ></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Servicio</ion-label>
-      <ion-select multiple="true">
-        <ion-option>Bacon</ion-option>
-        <ion-option>Black Olives</ion-option>
-        <ion-option>Extra Cheese</ion-option>
-        <ion-option>Mushrooms</ion-option>
-        <ion-option>Pepperoni</ion-option>
-        <ion-option>Sausage</ion-option>
-      </ion-select>
-    </ion-item>
-    <button ion-button block (click)="marcarPin()">Buscar</button>
-  </ion-list>
-    <!-- <div #map id="my-map"></div> -->
-    <agm-map [latitude]="lat" [longitude]="lng">
-      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-    </agm-map>
+  <form [formGroup]="formulario" (ngSubmit)="Buscar()">
+    <ion-list>
+      <ion-item>
+        <ion-label>Fecha de la Cita</ion-label>
+        <ion-datetime formControlName="fecha_cita" displayFormat="YYYY-MM-DD"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Hora de la Cita</ion-label>
+        <ion-datetime formControlName="hora_inicia" displayFormat="h:mm A" hourValues="3,4,5,6,7,8,9,10" minuteValues="0,30" pickerFormat="h mm A"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Servicio</ion-label>
+        <ion-select formControlName="servicio" multiple="true" [(ngModel)]="selec">
+          <ion-option *ngFor="let servi of servicios" value="{{servi.id_tipo_servicio}}">{{servi.tipo_servicio}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <button ion-button block type="submit"  [disabled]="!formulario.valid">Buscar</button>
+    </ion-list>
+  </form>
+
+  <!-- <div #map id="my-map"></div> -->
+  <agm-map [latitude]="lat" [longitude]="lng" [zoom]=15>
+    <agm-marker [latitude]="lat" (dragEnd)="markerMoved($event)" [markerDraggable]=true [longitude]="lng"></agm-marker>
+    <agm-marker *ngFor="let usuario of markers" [iconUrl]="icon" [latitude]="usuario.lat" (markerClick)="hola(usuario)"
+      [longitude]="usuario.lng"></agm-marker>
+  </agm-map>
 </ion-content>

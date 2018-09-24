@@ -15,6 +15,7 @@ import {IngresosPage} from '../pages/ingresos/ingresos';
 import {ConfiguracionPage} from '../pages/configuracion/configuracion';
 import {ReportePage} from '../pages/reporte/reporte';
 import {UsuarioPage} from '../pages/usuario/usuario';
+import {PerfilUsuarioPage} from '../pages/perfil-usuario/perfil-usuario';
 
 // api
 import { StatusBar } from '@ionic-native/status-bar';
@@ -44,7 +45,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     IngresosPage,
     ConfiguracionPage,
     ReportePage,
-    UsuarioPage
+    UsuarioPage,
+    PerfilUsuarioPage
 
   ],
   imports: [
@@ -53,7 +55,7 @@ import { Geolocation } from '@ionic-native/geolocation';
     HttpClientModule,
     HttpModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBTDB7EYkVZtErCXBuj0dtjrmYogJsWgmA'
+      apiKey: 'AIzaSyCAWIFGXpkhOT8-7G3o66tHcWiTE1n5H3k'
     })
   ],
   bootstrap: [IonicApp],
@@ -70,7 +72,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     IngresosPage,
     ConfiguracionPage,
     ReportePage,
-    UsuarioPage
+    UsuarioPage,
+    PerfilUsuarioPage
   ],
   providers: [
     StatusBar,

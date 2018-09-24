@@ -18,7 +18,7 @@ interface Iron_usuario {
 }
 @Injectable()
 export class ServiceSpappProvider {
-  servidor = "http://10.73.2.156/GitHub/TV18-028/conexion/Logica/";
+  servidor = "http://10.73.54.47/GitHub/TV18-028/conexion/Logica/";
   constructor(
     public http: HttpClient,
     public http2: Http,

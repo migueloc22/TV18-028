@@ -45,9 +45,12 @@ if (isset($postdata)) {
         
         break;
         case 'BuscarUsuario':
-            $num_documento=$request->num_documento;
-            $PassUsu=$util->encode ( $request->contrasena) ;
-            $dtUsuario->logueoUser($num_documento,$PassUsu);
+            $dtUsuario->BuscarUsuario();
+        
+        break;
+        case 'BuscarUsuariof':
+            $filter=$request->filter;
+            $dtUsuario->BuscarUsuariof($filter);
         
         break;
         

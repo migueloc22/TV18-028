@@ -92,18 +92,26 @@ class DatoUsuario{
     }
 
     function BuscarUsuario(){
-        $stmt = mysqli_prepare($this->cnn, "SELECT * FROM usuario");
-       
-        mysqli_stmt_execute($stmt);
+        $Query = "SELECT * FROM usuario";
+        $result = mysqli_query($this->cnn,$Query);
+            $array_dpto = array();
 
-        /* cierra sentencia y conexión */
-        mysqli_stmt_close($stmt);
-
-        /* cierra la conexión */
-        mysqli_close($this->cnn);
+            while($data = mysqli_fetch_assoc($result)){
+                $array_dpto[]=$data;
+            }
+          //  die;
+            echo json_encode($array_dpto);
     }
     function BuscarUsuariof($filter){
-        
+        $Query = "SELECT * FROM usuario WHERE $filter";
+        $result = mysqli_query($this->cnn,$Query);
+            $array_dpto = array();
+
+            while($data = mysqli_fetch_assoc($result)){
+                $array_dpto[]=$data;
+            }
+          //  die;
+            echo json_encode($array_dpto);
     }
     public function logueoUser($num_documento,$password){
      
