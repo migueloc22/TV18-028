@@ -30,6 +30,15 @@ $postdata = file_get_contents("php://input");
                 $csCita=new CsCita($id_cita, $codigo, $toltal, $duracion, $fecha_registro, $fecha_cita, $hora_inicia, $hora_final, $latitud, $longitud, $comentario,$visto, $fk_id_tomador, $fk_id_prestador, $fk_estado_cita);
                 $DatoCita->AgregarCita($csCita);
                 break;
+                case 'ModificarDemanda':
+                $id_cita=$request->id_cita;
+                $fk_id_tomador=$request->fk_id_tomador;
+                $DatoCita->ModificarDemanda($id_cita,$fk_id_tomador);
+                break;
+                case 'FilterCita':
+                $filter=$request->filter;
+                $DatoCita->FilterCita($filter);
+                    break;
             
             default:
                 # code...

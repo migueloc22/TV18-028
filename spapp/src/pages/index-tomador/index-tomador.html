@@ -37,6 +37,7 @@
   </form>
 
   <!-- <div #map id="my-map"></div> -->
+  <p style="color:rgb(140, 138, 138)">Arrastré la ubicación de la visita</p>
   <agm-map [latitude]="lat" [longitude]="lng" [zoom]=15>
     <agm-marker [latitude]="lat" (dragEnd)="markerMoved($event)" [markerDraggable]=true [longitude]="lng"></agm-marker>
     <agm-marker *ngFor="let usuario of markers" [iconUrl]="icon" [latitude]="usuario.lat" (markerClick)="hola(usuario)"

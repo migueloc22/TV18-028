@@ -1,0 +1,22 @@
+<!--
+  Generated template for the UbicaionPerfilPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>UbicaionPerfil</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]=15>
+        <agm-marker [latitude]="lat"  [longitude]="lng"></agm-marker>
+        <agm-marker *ngFor="let usuario of markers" [iconUrl]="icon" [latitude]="usuario.lat" (markerClick)="hola(usuario)"
+          [longitude]="usuario.lng"></agm-marker>
+      </agm-map>
+</ion-content>

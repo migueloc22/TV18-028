@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef } from "@angular/core";
 import { Geolocation } from "@ionic-native/geolocation";
 import { ServiceSpappProvider } from "../../providers/service-spapp/service-spapp";
 import { PerfilUsuarioPage } from "../perfil-usuario/perfil-usuario";
+import {UbicaionPerfilPage} from '../ubicaion-perfil/ubicaion-perfil';
 import {
   IonicPage,
   NavController,
@@ -103,13 +104,30 @@ export class IndexTomadorPage {
     console.log(this.formulario.value);
     this.service.Crup("LogicaCita.php", this.formulario.value)
     .subscribe(data => {
-      //console.log(JSON.stringify(data));
-      if (data=="1") {
+     
+      // if (data=="1") {
     
-      } else {
+      // } else {
         
+      // }
+      var idCita=data;
+      for(let servi of this.servicios){
+        console.log(idCita);
+       // console.log(servi.id_tipo_servicio);
+       this.RegistrarDetalle(idCita,servi.id_tipo_servicio);
       }
-      
+      this.navCtrl.push(UbicaionPerfilPage, { idCita: idCita });
+    }),
+    error => {
+      alert(error);
+    };
+
+  }
+  RegistrarDetalle(fk_id_cita,fk_id_tipo_servicio) {
+    //console.log(this.formulario.value);
+    this.service.Crup("LogicaDetalle_cita.php", {option:"AgregarDtCita",fk_id_cita:fk_id_cita,fk_id_tipo_servicio:fk_id_tipo_servicio})
+    .subscribe(data => {
+     console.log(data);
     }),
     error => {
       alert(error);

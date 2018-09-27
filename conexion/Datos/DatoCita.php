@@ -23,7 +23,8 @@ class DatoCita{
 
         /* ejecuta sentencias preparadas */
             mysqli_stmt_execute($stmt);
-            echo json_encode("1") ;
+            $id=$this->cnn->insert_id;
+            echo json_encode($id) ;
         } catch (mysqli_sql_exception $e) {
             echo json_encode('Excepción capturada: ',  $e->getMessage(), "\n");
         }
@@ -36,8 +37,28 @@ class DatoCita{
         mysqli_close($this->cnn);
     }
 
-    function Modificar(){
+    function ModificarDemanda($id_cita,$fk_id_tomador){
+        try {
+            $stmt = mysqli_prepare($this->cnn, "UPDATE cita SET fk_estado_cita = ?, fk_id_tomador = ? WHERE id_cita = ?");
+            mysqli_stmt_bind_param($stmt, 'sss',  $fk_estado_cita,$fk_id_tomador2,$id_cita2);
+            $fk_estado_cita="2";
+            $fk_id_tomador2=$fk_id_tomador;
+            $id_cita2=$id_cita;
 
+        /* ejecuta sentencias preparadas */
+            mysqli_stmt_execute($stmt);
+            $id=$this->cnn->insert_id;
+            echo json_encode("1") ;
+        } catch (mysqli_sql_exception $e) {
+            echo json_encode('Excepción capturada: ',  $e->getMessage(), "\n");
+        }
+       
+        
+        /* cierra sentencia y conexión */
+        mysqli_stmt_close($stmt);
+
+        /* cierra la conexión */
+        mysqli_close($this->cnn);
     }
 
     function CambiarEstado(){
@@ -55,8 +76,8 @@ class DatoCita{
           //  die;
             echo json_encode($array_dpto);
     }
-    function BuscarUsuariof($filter){
-        $Query = "SELECT * FROM usuario WHERE $filter";
+    function FilterCita($filter){
+        $Query = "SELECT * FROM cita  $filter";
         $result = mysqli_query($this->cnn,$Query);
             $array_dpto = array();
 
@@ -66,24 +87,5 @@ class DatoCita{
           //  die;
             echo json_encode($array_dpto);
     }
-    public function logueoUser($num_documento,$password){
-     
-        $Query = "SELECT `num_documento`, `nombre`, `apellido`, `correo`, `fecha_nac`,  `direccion`,  `celular`, `foto`, `hoja_vida`, `certificacion_estudio`,  `fk_id_tipo_doc`, `fk_id_ciudad`, `fk_estado_usuario`,fk_id_rol_usuario FROM usuario WHERE num_documento= '$num_documento' AND contrasena='$password'";
-            $result = mysqli_query($this->cnn,$Query);
-            $array_dpto = array();
-
-            while($data = mysqli_fetch_assoc($result)){
-                $array_dpto[]=$data;
-            }
-          //  die;
-            echo json_encode($array_dpto);
-        }
-
-
-        
-
-
 }
-// $DatoUsuario= new DatoUsuario();
-// $DatoUsuario ->logueoUser("mas@gmail.com","hola"); 
 ?>

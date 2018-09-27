@@ -16,6 +16,7 @@ import {ConfiguracionPage} from '../pages/configuracion/configuracion';
 import {ReportePage} from '../pages/reporte/reporte';
 import {UsuarioPage} from '../pages/usuario/usuario';
 import {PerfilUsuarioPage} from '../pages/perfil-usuario/perfil-usuario';
+import {UbicaionPerfilPage} from '../pages/ubicaion-perfil/ubicaion-perfil';
 
 // api
 import { StatusBar } from '@ionic-native/status-bar';
@@ -46,7 +47,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     ConfiguracionPage,
     ReportePage,
     UsuarioPage,
-    PerfilUsuarioPage
+    PerfilUsuarioPage,
+    UbicaionPerfilPage
 
   ],
   imports: [
@@ -73,7 +75,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     ConfiguracionPage,
     ReportePage,
     UsuarioPage,
-    PerfilUsuarioPage
+    PerfilUsuarioPage,
+    UbicaionPerfilPage
   ],
   providers: [
     StatusBar,
