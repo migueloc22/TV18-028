@@ -13,6 +13,7 @@ import {IngresosPage} from '../pages/ingresos/ingresos';
 import {ConfiguracionPage} from '../pages/configuracion/configuracion';
 import {ReportePage} from '../pages/reporte/reporte';
 import {UsuarioPage} from '../pages/usuario/usuario';
+import {ConfirmarCitaPage} from '../pages/confirmar-cita/confirmar-cita';
 
 @Component({
   templateUrl: 'app.html'

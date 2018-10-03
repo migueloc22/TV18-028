@@ -8,7 +8,8 @@ import {
   NavController,
   NavParams,
   MenuController,
-  ModalController
+  ModalController,
+  LoadingController
 } from "ionic-angular";
 import {
   FormControl,
@@ -67,7 +68,8 @@ export class IndexTomadorPage {
     private geolocation: Geolocation,
     public service: ServiceSpappProvider,
     public modalCtrl: ModalController,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public loadingCtrl: LoadingController
   ) {}
 
   ionViewDidLoad() {
@@ -89,6 +91,14 @@ export class IndexTomadorPage {
       this.lng = data.coords.longitude;
     });
   }
+
+  presentLoading() {
+    const loader = this.loadingCtrl.create({
+      content: "Cargando...",
+      duration: 3000
+    });
+    loader.present();
+  }
   markerMoved(event) {
     this.lat = event.coords.lat;
     this.lng = event.coords.lng;
@@ -104,6 +114,7 @@ export class IndexTomadorPage {
     console.log(this.formulario.value);
     this.service.Crup("LogicaCita.php", this.formulario.value)
     .subscribe(data => {
+      this.formulario.reset();
      
       // if (data=="1") {
     
@@ -116,6 +127,7 @@ export class IndexTomadorPage {
        // console.log(servi.id_tipo_servicio);
        this.RegistrarDetalle(idCita,servi.id_tipo_servicio);
       }
+      this.presentLoading();
       this.navCtrl.push(UbicaionPerfilPage, { idCita: idCita });
     }),
     error => {
@@ -127,6 +139,7 @@ export class IndexTomadorPage {
     //console.log(this.formulario.value);
     this.service.Crup("LogicaDetalle_cita.php", {option:"AgregarDtCita",fk_id_cita:fk_id_cita,fk_id_tipo_servicio:fk_id_tipo_servicio})
     .subscribe(data => {
+
      console.log(data);
     }),
     error => {

@@ -45,9 +45,12 @@ export class PerfilUsuarioPage {
   Servicios: any;
   estado: boolean = false;
   id_cita;
+  repuesta: string;
   fk_id_tomador;
+  arreglo:any;
   name = "Angular 5";
   alive = true;
+  subscription;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -62,32 +65,52 @@ export class PerfilUsuarioPage {
     this.cargarUsuario(this.navParams.get("idUser"));
     this.cargarServicio(this.navParams.get("idUser"));
     this.foto = "../../assets/imgs/perfil.jpg";
-    // this.confirmado();
+    this.confirmado();
   }
   close() {
-    this.viewCtrl.dismiss();
+    this.subscription.unsubscribe ();
+    let data = { dato: '0' };
+   this.viewCtrl.dismiss(data);
+  //   this.viewCtrl.dismiss();
   }
   confirmado() {
-    Observable.timer(0, 10000)
+    this.subscription = Observable.timer(0, 10000)
       .takeWhile(() => this.alive) // only fires when component is alive
       .subscribe(() => {
-        console.log("hola");
         setInterval(function() {}, 3000);
+        if (this.estado) {
+          console.log("Esperando ....");
+          // Inicio de la consulta
+          var filter =
+            " WHERE fk_estado_cita = 6 and fk_id_prestador ='" +
+            this.fk_id_tomador +
+            "' and id_cita ='" +
+            this.id_cita +
+            "'";
+          this.service
+            .ListarDatos2("LogicaCita.php", {
+              option: "FilterCita",
+              filter: filter
+            })
+            .timeout(3000)
+            .subscribe(data => {
+              console.log(data);
+              this.arreglo=data;
+              console.log(this.arreglo.length);
+              if (this.arreglo.length>0) {
+                this.subscription.unsubscribe ();
+                let data = { dato: '1' };
+                this.viewCtrl.dismiss(data);
+              }
+            }),
+            error => {
+              alert(error);
+            };
 
-        var filter =" WHERE fk_estado_cita = 6 and fk_id_tomador ='"+ this.fk_id_tomador+"' and id_cita ='"+ this.id_cita+"'";
-        this.service
-          .ListarDatos2("LogicaCita.php", {
-            option: "FilterCita",
-            filter: filter
-          })
-          .timeout(3000)
-          .subscribe(data => {
-            console.log("Estoy Cargando");
-            console.log(data);
-          }),
-          error => {
-            alert(error);
-          };
+          // Fin de la consulta
+        } else {
+          console.log("No esperando");
+        }
       });
   }
   contactar() {
@@ -99,8 +122,9 @@ export class PerfilUsuarioPage {
         fk_id_tomador: this.fk_id_tomador
       })
       .subscribe(data => {
-        console.log(data);
-        if (data == "1") {
+        this.repuesta = data;
+        console.log(this.repuesta);
+        if (this.repuesta == "1") {
           this.estado = true;
         } else {
           console.log("no funciona");

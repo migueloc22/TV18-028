@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
 import { PerfilUsuarioPage } from "../perfil-usuario/perfil-usuario";
+import {ConfirmarCitaPage} from '../confirmar-cita/confirmar-cita';
+import {IndexTomadorPage} from '../index-tomador/index-tomador';
 import {
   IonicPage,
   NavController,
@@ -55,7 +57,13 @@ export class UbicaionPerfilPage {
     const modal = this.modalCtrl.create(PerfilUsuarioPage, {
       idUser: markers.id,idCita:this.idCita
     });
-    
+    modal.onDidDismiss(data => {
+      if (data.dato=="1") {
+        this.presentLoading();
+        // this.navCtrl.push(ConfirmarCitaPage);
+        this.navCtrl.setRoot(IndexTomadorPage);
+      }
+    });
     modal.present();
   }
   cargarUsuario() {
@@ -84,7 +92,7 @@ export class UbicaionPerfilPage {
   }
   presentLoading() {
     const loader = this.loadingCtrl.create({
-      content: "Cargando...",
+      content: "Cita Confirmada...",
       duration: 3000
     });
     loader.present();

@@ -17,6 +17,7 @@ import {ReportePage} from '../pages/reporte/reporte';
 import {UsuarioPage} from '../pages/usuario/usuario';
 import {PerfilUsuarioPage} from '../pages/perfil-usuario/perfil-usuario';
 import {UbicaionPerfilPage} from '../pages/ubicaion-perfil/ubicaion-perfil';
+import {ConfirmarCitaPage} from '../pages/confirmar-cita/confirmar-cita';
 
 // api
 import { StatusBar } from '@ionic-native/status-bar';
@@ -48,7 +49,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     ReportePage,
     UsuarioPage,
     PerfilUsuarioPage,
-    UbicaionPerfilPage
+    UbicaionPerfilPage,
+    ConfirmarCitaPage
 
   ],
   imports: [
@@ -76,7 +78,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     ReportePage,
     UsuarioPage,
     PerfilUsuarioPage,
-    UbicaionPerfilPage
+    UbicaionPerfilPage,
+    ConfirmarCitaPage
   ],
   providers: [
     StatusBar,

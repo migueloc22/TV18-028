@@ -11,8 +11,8 @@ class DatoCita{
     
     function AgregarCita(CsCita $CsCita){  
         try {
-            $stmt = mysqli_prepare($this->cnn, "INSERT INTO cita (fecha_registro, fecha_cita, hora_inicia, hora_final, latitud, longitud, fk_id_tomador) VALUES (?,?,?,?,?,?,?)");
-            mysqli_stmt_bind_param($stmt, 'sssssss',  $fecha_registro, $fecha_cita, $hora_inicia, $hora_final, $latitud, $longitud, $fk_id_tomador);
+            $stmt = mysqli_prepare($this->cnn, "INSERT INTO cita (fecha_registro, fecha_cita, hora_inicia, hora_final, latitud, longitud, fk_id_tomador,codigo) VALUES (?,?,?,?,?,?,?,?)");
+            mysqli_stmt_bind_param($stmt, 'ssssssss',  $fecha_registro, $fecha_cita, $hora_inicia, $hora_final, $latitud, $longitud, $fk_id_tomador,$codigo);
             $fecha_registro=$CsCita->fecha_registro;
             $fecha_cita=$CsCita->fecha_cita;
             $hora_inicia=$CsCita->hora_inicia;
@@ -20,6 +20,7 @@ class DatoCita{
             $latitud=$CsCita->latitud;
             $longitud=$CsCita->longitud;
             $fk_id_tomador=$CsCita->fk_id_tomador;
+            $codigo=$CsCita->codigo;
 
         /* ejecuta sentencias preparadas */
             mysqli_stmt_execute($stmt);
@@ -39,7 +40,7 @@ class DatoCita{
 
     function ModificarDemanda($id_cita,$fk_id_tomador){
         try {
-            $stmt = mysqli_prepare($this->cnn, "UPDATE cita SET fk_estado_cita = ?, fk_id_tomador = ? WHERE id_cita = ?");
+            $stmt = mysqli_prepare($this->cnn, "UPDATE cita SET fk_estado_cita = ?, fk_id_prestador = ? WHERE id_cita = ?");
             mysqli_stmt_bind_param($stmt, 'sss',  $fk_estado_cita,$fk_id_tomador2,$id_cita2);
             $fk_estado_cita="2";
             $fk_id_tomador2=$fk_id_tomador;
@@ -48,7 +49,7 @@ class DatoCita{
         /* ejecuta sentencias preparadas */
             mysqli_stmt_execute($stmt);
             $id=$this->cnn->insert_id;
-            echo json_encode("1") ;
+            echo json_encode(1) ;
         } catch (mysqli_sql_exception $e) {
             echo json_encode('Excepción capturada: ',  $e->getMessage(), "\n");
         }

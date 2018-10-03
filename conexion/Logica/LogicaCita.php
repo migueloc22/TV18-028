@@ -5,7 +5,9 @@ header("Access-Control-Allow-Methods: PUT, GET, POST");
 header('Content-Type: application/x-www-form-urlencoded');
 header('Content-Type: application/json');
 include "..\Datos\DatoCita.php";
+include "util.php";
 $DatoCita = new DatoCita();
+$util = new util();
 $postdata = file_get_contents("php://input");
     if (isset($postdata)) {
         $request = json_decode($postdata);
@@ -13,7 +15,7 @@ $postdata = file_get_contents("php://input");
         switch ($option) {
             case 'AgregarCita':
                 $id_cita=null;
-                $codigo=null;
+                $codigo=$util->generarCodigo(4) ;
                 $toltal=null;
                 $duracion=null;
                 $fecha_registro=date("Y-m-d H:i:s");
