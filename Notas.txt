@@ -1,0 +1,3 @@
+Colocar un orde by en citas Y formato a la hora.
+mejorar el proceso de olicitar citas con el filter.
+Validar la contraseña de usuario

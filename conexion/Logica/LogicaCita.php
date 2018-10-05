@@ -37,6 +37,11 @@ $postdata = file_get_contents("php://input");
                 $fk_id_tomador=$request->fk_id_tomador;
                 $DatoCita->ModificarDemanda($id_cita,$fk_id_tomador);
                 break;
+                case 'CambiarEstado':
+                    $id_cita=$request->id_cita;
+                    $fk_estado_cita=$request->fk_estado_cita;
+                    $DatoCita->CambiarEstado($id_cita,$fk_estado_cita);
+                    break;
                 case 'FilterCita':
                 $filter=$request->filter;
                 $DatoCita->FilterCita($filter);

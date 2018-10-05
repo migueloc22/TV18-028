@@ -62,8 +62,27 @@ class DatoCita{
         mysqli_close($this->cnn);
     }
 
-    function CambiarEstado(){
+    function CambiarEstado($id_cita,$fk_estado_cita){
+        try {
+            $stmt = mysqli_prepare($this->cnn, "UPDATE cita SET fk_estado_cita = ? WHERE id_cita = ?");
+            mysqli_stmt_bind_param($stmt, 'ss',  $fk_estado_cita2,$id_cita2);
+            $fk_estado_cita2=$fk_estado_cita;
+            $id_cita2=$id_cita;
 
+        /* ejecuta sentencias preparadas */
+            mysqli_stmt_execute($stmt);
+            $id=$this->cnn->insert_id;
+            echo json_encode(1) ;
+        } catch (mysqli_sql_exception $e) {
+            echo json_encode('Excepción capturada: ',  $e->getMessage(), "\n");
+        }
+       
+        
+        /* cierra sentencia y conexión */
+        mysqli_stmt_close($stmt);
+
+        /* cierra la conexión */
+        mysqli_close($this->cnn);
     }
 
     function BuscarUsuario(){

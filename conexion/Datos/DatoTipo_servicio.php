@@ -25,6 +25,22 @@ class DatoTipo_servicio{
             echo json_encode($array_dpto);
             
         }
+        function FilterTipo_servicio($filter){
+            
+            $Query = "SELECT * FROM tipo_servicio $filter";
+            $result = mysqli_query($this->cnn,$Query);
+            $array_dpto = array();
+
+            while($data = mysqli_fetch_assoc($result)){
+                
+                html_entity_decode($data['tipo_servicio']);
+
+                $array_dpto[]=$data;
+            }
+          //  die;
+            echo json_encode($array_dpto);
+            
+        }
 
     
    

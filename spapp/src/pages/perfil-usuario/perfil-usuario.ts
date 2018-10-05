@@ -114,7 +114,6 @@ export class PerfilUsuarioPage {
       });
   }
   contactar() {
-    console.log("estoy contactar");
     this.service
       .Crup("LogicaCita.php", {
         option: "ModificarDemanda",

@@ -17,5 +17,168 @@
 
 
 <ion-content padding>
-
+  <form [formGroup]="profileForm" >
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>
+          Nombres
+        </ion-label>
+        <ion-input type="text" formControlName="nombre"></ion-input>
+        
+      </ion-item>
+      <!-- Inicio validacion -->
+      <ion-item *ngIf="f.nombre.invalid &&  f.nombre.touched" >
+        <p *ngIf="f.nombre.errors.required" class="error">*Campo requerido</p>
+        <p *ngIf="f.nombre.errors.maxlength" class="error">*Debe tener 65 caractreres maximo</p>
+      </ion-item>
+      <!-- final validacion -->
+      <ion-item>
+        <ion-label fixed>
+          Apellidos
+        </ion-label>
+        <ion-input type="text" formControlName='apellido'></ion-input>
+      </ion-item>
+      <!-- Inicio validacion -->
+      <ion-item *ngIf="f.apellido.invalid &&  f.apellido.touched" >
+          <p *ngIf="f.apellido.errors.required" class="error">*Campo requerido</p>
+          <p *ngIf="f.apellido.errors.maxlength" class="error">*Debe tener 65 caractreres maximo</p>
+        </ion-item>
+        <!-- final validacion -->
+      <ion-item>
+        <ion-label fixed>
+          Tipo de documento
+        </ion-label>
+        <ion-select formControlName="fk_id_tipo_doc">
+          <ion-option *ngFor="let tpDocumento of tpDocumentos" value="{{tpDocumento.id_tipo_documento}}">{{tpDocumento.tipo_documento}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <!-- Inicio validacion -->
+      <ion-item *ngIf="f.fk_id_tipo_doc.invalid &&  f.fk_id_tipo_doc.touched" >
+          <p *ngIf="f.fk_id_tipo_doc.errors.required" class="error">*Campo requerido</p>
+          <!-- <p *ngIf="f.fk_id_tipo_doc.errors.maxlength">*El nombre debe tener 65 caractreres maximo</p> -->
+        </ion-item>
+        <!-- final validacion -->
+      <ion-item>
+        <ion-label fixed>
+          # Documento
+        </ion-label>
+        <ion-input type="number" formControlName="num_documento"></ion-input>
+      </ion-item>
+      <!-- Inicio validacion -->
+      <ion-item *ngIf="f.num_documento.invalid &&  f.num_documento.touched" >
+          <p *ngIf="f.num_documento.errors.required" class="error">*Campo requerido</p>
+          <p *ngIf="f.num_documento.errors.maxlength" class="error">*Debe tener 11 caractreres maximo</p>
+        </ion-item>
+        <!-- final validacion -->
+      <ion-item>
+        <ion-label fixed>
+            Departamento
+        </ion-label>
+        <ion-select  formControlName="id_departamento" >
+          <ion-option *ngFor="let departemento of Departamentos" value="{{departemento.id_depto}}">{{departemento.depto}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <!-- Inicio validacion -->
+      <ion-item *ngIf="f.id_departamento.invalid &&  f.id_departamento.touched" >
+          <p *ngIf="f.id_departamento.errors.required" class="error">*Campo requerido</p>
+          <!-- <p *ngIf="f.id_departamento.errors.maxlength">*El nombre debe tener 65 caractreres maximo</p> -->
+        </ion-item>
+        <!-- final validacion -->
+      <ion-item>
+        <ion-label fixed>
+            Ciudad
+        </ion-label>
+        <ion-select formControlName="fk_id_ciudad" >
+          <ion-option *ngFor="let ciuda of ciudades" value="{{ciuda.id_ciudad}}">{{ciuda.ciudad}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <!-- Inicio validacion -->
+      <ion-item *ngIf="f.fk_id_ciudad.invalid &&  f.fk_id_ciudad.touched" >
+          <p *ngIf="f.fk_id_ciudad.errors.required" class="error">*Campo requerido</p>
+          <!-- <p *ngIf="f.fk_id_ciudad.errors.maxlength">*El nombre debe tener 65 caractreres maximo</p> -->
+        </ion-item>
+        <!-- final validacion -->
+      <ion-item>
+        <ion-label fixed>
+          Correo
+        </ion-label>
+        <ion-input type="email" formControlName="correo"></ion-input>
+      </ion-item>
+      <!-- Inicio validacion -->
+      <ion-item *ngIf="f.correo.invalid &&  f.correo.touched" >
+          <p *ngIf="f.correo.errors.required" class="error">*Campo requerido</p>
+          <p *ngIf="f.correo.errors.pattern" class="error">*Debe escribir un correo</p>
+        </ion-item>
+        <!-- final validacion -->
+      <ion-item>
+        <ion-label fixed>
+            Dirección
+        </ion-label>
+        <ion-input type="text" formControlName="direccion"></ion-input>
+      </ion-item>
+      <!-- Inicio validacion -->
+      <ion-item *ngIf="f.direccion.invalid &&  f.direccion.touched" >
+          <p *ngIf="f.direccion.errors.required" class="error">*Campo requerido</p>
+          <p *ngIf="f.direccion.errors.maxlength" class="error">*Debe tener 30 caractreres maximo</p>
+        </ion-item>
+        <!-- final validacion -->
+      <ion-item>
+        <ion-label fixed>
+            Celular
+        </ion-label>
+        <ion-input type="tel" formControlName="celular"></ion-input>
+      </ion-item>
+      <!-- Inicio validacion -->
+      <ion-item *ngIf="f.celular.invalid &&  f.celular.touched" >
+          <p *ngIf="f.celular.errors.required" class="error">*Campo requerido</p>
+          <p *ngIf="f.celular.errors.maxlength" class="error">*Debe tener 10 caractreres maximo</p>
+        </ion-item>
+        <!-- final validacion -->
+      <ion-item>
+        <ion-label fixed>
+            Fecha de Nacimiento
+        </ion-label>
+        <ion-datetime displayFormat="YYYY-MM-DD"  formControlName="fecha_nac"></ion-datetime>
+      </ion-item>
+      <!-- Inicio validacion -->
+      <ion-item *ngIf="f.fecha_nac.invalid &&  f.fecha_nac.touched" >
+          <p *ngIf="f.fecha_nac.errors.required" class="error">*Campo requerido</p>
+          <!-- <p *ngIf="f.fecha_nac.errors.maxlength">*El nombre debe tener 65 caractreres maximo</p> -->
+        </ion-item>
+        <!-- final validacion -->
+      <ion-item>
+        <ion-label fixed>
+            Contraseña
+        </ion-label>
+        <ion-input type="password" formControlName="contrasena2"></ion-input>
+      </ion-item>
+      <!-- Inicio validacion -->
+      <ion-item *ngIf="f.contrasena2.invalid &&  f.contrasena2.touched" >
+          <p *ngIf="f.contrasena2.errors.required" class="error">*Campo requerido</p>
+          <!-- <p *ngIf="f.contrasena.errors.maxlength">*El nombre debe tener 65 caractreres maximo</p> -->
+        </ion-item>
+        <!-- final validacion -->
+      <ion-item>
+        <ion-label fixed>
+            Confimar Contraseña
+        </ion-label>
+        <ion-input type="password" formControlName="contrasena"></ion-input>
+      </ion-item>
+      <!-- Inicio validacion -->
+      <ion-item *ngIf="f.contrasena.invalid &&  f.contrasena.touched" >
+          <p *ngIf="f.contrasena.errors.required" class="error">*Campo requerido</p>
+          <p *ngIf="f.contrasena.errors.passwordMatchValidator" class="error">*No requerido</p>
+          <!-- <p *ngIf="f.contrasena.errors.maxlength">*El nombre debe tener 65 caractreres maximo</p> -->
+        </ion-item>
+        <!-- final validacion -->
+     <!-- <ion-item> 
+        <img [src]="base64Image" />
+        <button ion-button color="primary" block icon-start  (click)="TomarFoto(); false"> <ion-icon name="camera"></ion-icon>Tomar Foto</button>
+        {{photoTake}}
+      </ion-item>-->
+    </ion-list>
+    <div padding>
+      <button ion-button color="primary" block type="submit"  [disabled]="!profileForm.valid"> Registrar</button>
+    </div>
+  </form>
 </ion-content>

@@ -15,7 +15,10 @@ $postdata = file_get_contents("php://input");
             case 'CargarTipo_servicio':
             $DatoTipo_servicio->CargarTipo_servicio();
                 break;
-            
+            case 'FilterTipo_servicio':
+                $filter=$request->filter;
+                $DatoTipo_servicio->FilterTipo_servicio($filter);
+                    break;
             default:
                 # code...
                 break;
