@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, LoadingController } from 'ionic-angular';
 import { ServiceSpappProvider } from '../../providers/service-spapp/service-spapp';
 import {CitaConfirmarPage} from '../cita-confirmar/cita-confirmar';
+import { BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocationResponse } from '@ionic-native/background-geolocation';
+import {CitaNavPage} from '../cita-nav/cita-nav';
 
 /**
  * Generated class for the IndexPrestadorPage page.
@@ -17,7 +19,8 @@ import {CitaConfirmarPage} from '../cita-confirmar/cita-confirmar';
 })
 export class IndexPrestadorPage {
   ofertas:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public menuCtrl: MenuController,public service: ServiceSpappProvider) {
+  logs: string[] = [];
+  constructor(public navCtrl: NavController, public navParams: NavParams,public menuCtrl: MenuController,public service: ServiceSpappProvider,private backgroundGeolocation: BackgroundGeolocation,public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
@@ -26,6 +29,13 @@ export class IndexPrestadorPage {
     this.menuCtrl.enable(false, "Tomador");
     var user =JSON.parse(localStorage.getItem("user"));
     this.cargarOferta(user.num_documento);
+  }
+  presentLoading() {
+    const loader = this.loadingCtrl.create({
+      content: "Cargando...",
+      duration: 3000
+    });
+    loader.present();
   }
   cargarOferta(id){
     var filter= "LEFT JOIN estado_cita ON cita.fk_estado_cita=estado_cita.id_estado_cita WHERE  (fk_id_prestador="+id+") AND (fk_estado_cita=2 OR fk_estado_cita=6)";
@@ -36,6 +46,48 @@ export class IndexPrestadorPage {
     error => {
       alert(error);
     };
+  }
+  stopBackgroundGeolocation(){
+    this.backgroundGeolocation.stop();
+  }
+  startBackgroundGeolocation(){
+    this.backgroundGeolocation.isLocationEnabled()
+    .then((rta) =>{
+      if(rta){
+        this.start();
+      }else {
+        this.backgroundGeolocation.showLocationSettings();
+      }
+    })
+  }
+  start(){
+
+    const config: BackgroundGeolocationConfig = {
+      desiredAccuracy: 10,
+      stationaryRadius: 1,
+      distanceFilter: 1,
+      debug: true,
+      stopOnTerminate: false,
+      // Android only section
+      locationProvider: 1,
+      startForeground: true,
+      interval: 6000,
+      fastestInterval: 5000,
+      activitiesInterval: 10000,
+    };
+  
+    console.log('start');
+  
+    this.backgroundGeolocation
+    .configure(config)
+    .subscribe((location: BackgroundGeolocationResponse) => {
+      console.log(location);
+      //this.logs.push(`${location.latitude},${location.longitude}`);
+    });
+  
+    // start recording location
+    this.backgroundGeolocation.start();
+  
   }
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
@@ -54,7 +106,13 @@ export class IndexPrestadorPage {
   }
   Confirmar(ofertas)
   {
-    console.log(ofertas);
+    //console.log(ofertas);
       this.navCtrl.push(CitaConfirmarPage,ofertas);
+      this.presentLoading();
+  }
+  Iniciar(ofertas){
+    //console.log(ofertas);
+    this.navCtrl.setRoot(CitaNavPage,ofertas);
+    this.presentLoading();
   }
 }

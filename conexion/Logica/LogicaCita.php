@@ -42,6 +42,13 @@ $postdata = file_get_contents("php://input");
                     $fk_estado_cita=$request->fk_estado_cita;
                     $DatoCita->CambiarEstado($id_cita,$fk_estado_cita);
                     break;
+                case 'ConfirmarCita':
+                    $id_cita=$request->id_cita;
+                    $fk_estado_cita=$request->fk_estado_cita;
+                    $toltal=$request->toltal;
+                    $visto=$request->visto;
+                    $DatoCita-> ConfirmarCita($id_cita,$fk_estado_cita,$toltal,$visto);
+                    break;
                 case 'FilterCita':
                 $filter=$request->filter;
                 $DatoCita->FilterCita($filter);

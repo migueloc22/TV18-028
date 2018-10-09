@@ -20,6 +20,7 @@ import {UbicaionPerfilPage} from '../pages/ubicaion-perfil/ubicaion-perfil';
 import {ConfirmarCitaPage} from '../pages/confirmar-cita/confirmar-cita';
 import {CitaDetallePage} from '../pages/cita-detalle/cita-detalle';
 import {CitaConfirmarPage} from '../pages/cita-confirmar/cita-confirmar';
+import {CitaNavPage} from '../pages/cita-nav/cita-nav';
 
 // api
 import { StatusBar } from '@ionic-native/status-bar';
@@ -32,6 +33,7 @@ import { Camera } from '@ionic-native/camera';
 import { Base64 } from '@ionic-native/base64';
 import { File } from '@ionic-native/file';
 import { AgmCoreModule } from '@agm/core';
+import { BackgroundGeolocation} from '@ionic-native/background-geolocation';
 import { Geolocation } from '@ionic-native/geolocation';
 
 
@@ -54,7 +56,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     UbicaionPerfilPage,
     ConfirmarCitaPage,
     CitaDetallePage,
-    CitaConfirmarPage
+    CitaConfirmarPage,
+    CitaNavPage
 
   ],
   imports: [
@@ -85,7 +88,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     UbicaionPerfilPage,
     ConfirmarCitaPage,
     CitaDetallePage,
-    CitaConfirmarPage
+    CitaConfirmarPage,
+    CitaNavPage
   ],
   providers: [
     StatusBar,
@@ -95,8 +99,10 @@ import { Geolocation } from '@ionic-native/geolocation';
     HTTP,
     Camera,
     Base64,
+    BackgroundGeolocation,
     File,
-    Geolocation
+    Geolocation,
+    
   ]
 })
 export class AppModule {}

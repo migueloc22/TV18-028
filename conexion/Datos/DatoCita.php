@@ -84,7 +84,30 @@ class DatoCita{
         /* cierra la conexión */
         mysqli_close($this->cnn);
     }
+    function ConfirmarCita($id_cita,$fk_estado_cita,$toltal,$visto){
+        try {
+            $stmt = mysqli_prepare($this->cnn, "UPDATE cita SET fk_estado_cita = ?, toltal=?, visto=? WHERE id_cita = ?");
+            mysqli_stmt_bind_param($stmt, 'ssss',  $fk_estado_cita2,$toltal2,$visto2,$id_cita2);
+            $toltal2=$toltal;
+            $fk_estado_cita2=$fk_estado_cita;
+            $visto2=$visto;
+            $id_cita2=$id_cita;
 
+        /* ejecuta sentencias preparadas */
+            mysqli_stmt_execute($stmt);
+            $id=$this->cnn->insert_id;
+            echo json_encode(1) ;
+        } catch (mysqli_sql_exception $e) {
+            echo json_encode('Excepción capturada: ',  $e->getMessage(), "\n");
+        }
+       
+        
+        /* cierra sentencia y conexión */
+        mysqli_stmt_close($stmt);
+
+        /* cierra la conexión */
+        mysqli_close($this->cnn);
+    }
     function BuscarUsuario(){
         $Query = "SELECT * FROM usuario";
         $result = mysqli_query($this->cnn,$Query);
