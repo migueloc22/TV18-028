@@ -44,6 +44,13 @@ if (isset($postdata)) {
             $dtUsuario->logueoUser($num_documento,$PassUsu);
         
         break;
+        case 'ActulizarPosicion':
+            $num_documento=$request->num_documento;
+            $latitud=$request->latitud;
+            $longitud=$request->longitud;
+            $dtUsuario->ActulizarPosicion($latitud,$longitud,$num_documento);
+        
+        break;
         case 'BuscarUsuario':
             $dtUsuario->BuscarUsuario();
         

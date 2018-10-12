@@ -5,6 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Simulate android|ios in browser",
+            "type": "cordova",
+            "request": "launch",
+            "platform": "android|ios",
+            "target": "chrome",
+            "simulatePort": 8000,
+            "livereload": true,
+            "cwd": "${workspaceRoot}",
+            "sourceMaps": true
+        },
+        {
             "name": "Listen for XDebug",
             "type": "php",
             "request": "launch",

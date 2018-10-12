@@ -82,7 +82,29 @@ class DatoUsuario{
         /* cierra la conexión */
         mysqli_close($this->cnn);
     }
+    function ActulizarPosicion($latitud,$longitud,$num_documento){  
 
+        
+        try {
+            $stmt = mysqli_prepare($this->cnn, "UPDATE usuario set latitud=?,longitud=? WHERE num_documento=? ");
+            mysqli_stmt_bind_param($stmt, 'sss',  $latitud2,$longitud2,$num_documento2);
+            $latitud2=$latitud;
+            $longitud2=$longitud;
+            $num_documento2=$num_documento;
+        /* ejecuta sentencias preparadas */
+            mysqli_stmt_execute($stmt);
+            echo json_encode("1") ;
+        } catch (mysqli_sql_exception $e) {
+            echo json_encode('Excepción capturada: ',  $e->getMessage(), "\n");
+        }
+       
+        
+        /* cierra sentencia y conexión */
+        mysqli_stmt_close($stmt);
+
+        /* cierra la conexión */
+        mysqli_close($this->cnn);
+    }
     function Modificar(){
 
     }

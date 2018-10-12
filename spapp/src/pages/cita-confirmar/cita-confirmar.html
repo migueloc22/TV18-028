@@ -15,16 +15,25 @@
 
 <ion-content padding>
   <form [formGroup]="formulario" (ngSubmit)="contactar()">
-      <ion-list >
-          <ion-item>
-            <ion-label floating>Valor</ion-label>
-            <ion-input formControlName="toltal" type="number"></ion-input>
-          </ion-item>
-          <button ion-button  type="submit" [disabled]="!formulario.valid" clear>Confirmar</button>
-        </ion-list>
-  </form >
-  
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Valor</ion-label>
+        <ion-input formControlName="toltal" type="number" step="any"></ion-input>
+      </ion-item>
+      <button ion-button type="submit" [disabled]="!formulario.valid" clear>Confirmar</button>
+    </ion-list>
+  </form>
+
   <h2>Información</h2>
+  <ion-card>
+      <ion-card-header>
+        Servicio
+      </ion-card-header>
+      <ion-card-content>
+          <ion-badge *ngFor="let servi of servicios" item-end>{{servi.tipo_servicio}}</ion-badge> 
+      </ion-card-content>
+      
+    </ion-card>
   <ion-card>
     <ion-card-header>
       Ubicación de la visita
@@ -35,16 +44,6 @@
     </agm-map>
 
   </ion-card>
-  <ion-card>
-    <ion-card-header>
-      Servicio
-    </ion-card-header>
-    <ion-list>
-      <ion-item *ngFor="let servi of servicios">
-        <ion-icon name="radio-button-on" item-start></ion-icon>
-        {{servi.tipo_servicio}}
-      </ion-item>
-    </ion-list>
-  </ion-card>
+  
 
 </ion-content>

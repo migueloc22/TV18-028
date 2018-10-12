@@ -35,6 +35,7 @@ import { File } from '@ionic-native/file';
 import { AgmCoreModule } from '@agm/core';
 import { BackgroundGeolocation} from '@ionic-native/background-geolocation';
 import { Geolocation } from '@ionic-native/geolocation';
+import { LocationTrackerProvider } from '../providers/location-tracker/location-tracker';
 
 
 @NgModule({
@@ -102,6 +103,7 @@ import { Geolocation } from '@ionic-native/geolocation';
     BackgroundGeolocation,
     File,
     Geolocation,
+    LocationTrackerProvider,
     
   ]
 })

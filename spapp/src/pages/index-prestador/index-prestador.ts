@@ -28,8 +28,10 @@ export class IndexPrestadorPage {
     this.menuCtrl.enable(true, "Prestador");
     this.menuCtrl.enable(false, "Tomador");
     var user =JSON.parse(localStorage.getItem("user"));
+    // this.startBackgroundGeolocation();
     this.cargarOferta(user.num_documento);
   }
+  
   presentLoading() {
     const loader = this.loadingCtrl.create({
       content: "Cargando...",
@@ -38,7 +40,7 @@ export class IndexPrestadorPage {
     loader.present();
   }
   cargarOferta(id){
-    var filter= "LEFT JOIN estado_cita ON cita.fk_estado_cita=estado_cita.id_estado_cita WHERE  (fk_id_prestador="+id+") AND (fk_estado_cita=2 OR fk_estado_cita=6)";
+    var filter= "LEFT JOIN estado_cita ON cita.fk_estado_cita=estado_cita.id_estado_cita WHERE  (fk_id_prestador="+id+") AND (fk_estado_cita=2 OR fk_estado_cita=6) ORDER BY fecha_registro DESC;";
     this.service.ListarDatos2("LogicaCita.php",{option:"FilterCita",filter:filter}).subscribe(data=>{
       console.log(data);
       this.ofertas=data;
@@ -82,6 +84,8 @@ export class IndexPrestadorPage {
     .configure(config)
     .subscribe((location: BackgroundGeolocationResponse) => {
       console.log(location);
+      var user =JSON.parse(localStorage.getItem("user"));
+      this.cargarUsuario(user.num_documento,location.latitude,location.longitude)
       //this.logs.push(`${location.latitude},${location.longitude}`);
     });
   
@@ -114,5 +118,20 @@ export class IndexPrestadorPage {
     //console.log(ofertas);
     this.navCtrl.setRoot(CitaNavPage,ofertas);
     this.presentLoading();
+  }
+  cargarUsuario(num_documento,latitud,longitud) {
+    this.service
+      .ListarDatos2("LogicaUsuario.php", {
+        option: "ActulizarPosicion",
+        num_documento:num_documento,
+        latitud:latitud,
+        longitud:longitud,
+      })
+      .subscribe(data => {
+        console.log(data);
+      }),
+      error => {
+        alert(error);
+      };
   }
 }
