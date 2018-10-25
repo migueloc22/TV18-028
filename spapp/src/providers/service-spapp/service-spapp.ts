@@ -15,7 +15,7 @@ import { HTTP } from "@ionic-native/http";
 
 @Injectable()
 export class ServiceSpappProvider {
-  servidor = "http://10.73.1.220/GitHub/TV18-028/conexion/Logica/";
+  servidor = "http://10.73.54.52/GitHub/TV18-028/conexion/Logica/";
   constructor(
     public http: HttpClient,
     public http2: Http,

@@ -36,6 +36,7 @@ import { AgmCoreModule } from '@agm/core';
 import { BackgroundGeolocation} from '@ionic-native/background-geolocation';
 import { Geolocation } from '@ionic-native/geolocation';
 import { LocationTrackerProvider } from '../providers/location-tracker/location-tracker';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { LocationTrackerProvider } from '../providers/location-tracker/location-
     HttpModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCAWIFGXpkhOT8-7G3o66tHcWiTE1n5H3k'
-    })
+    }),
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

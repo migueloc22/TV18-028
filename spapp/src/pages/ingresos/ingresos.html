@@ -16,9 +16,44 @@
 </ion-header>
 
 
-<ion-content padding>
-  <h3>Current Latitude: {{locationTracker.lat}}</h3>
+<ion-content padding class="color">
+  <!-- <h3>Current Latitude: {{locationTracker.lat}}</h3>
   <h3>Current Longitude: {{locationTracker.lng}}</h3>
   <button ion-button full primary (click)="start()">Start Tracking</button>
-  <button ion-button full primary (click)="stop()">Stop Tracking</button>
+  <button ion-button full primary (click)="stop()">Stop Tracking</button> -->
+  <button ion-button full primary  (click)="VER()"> click</button>
+  <ion-card>
+    <ion-item>
+    <ion-label>Fecha</ion-label>
+    <ion-select [(ngModel)]="gaming">
+      <ion-option value="nes">NES</ion-option>
+      <ion-option value="n64">Nintendo64</ion-option>
+      <ion-option value="ps">PlayStation</ion-option>
+    </ion-select>
+  </ion-item>
+  </ion-card>
+  
+  <ion-card>
+    <canvas baseChart [data]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [chartType]="lineChartType"
+      (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+    </canvas>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Ganancia
+    </ion-card-header>
+    <ion-card-content>
+      <h1>$78.000</h1>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      Numero de citas
+    </ion-card-header>
+    <ion-card-content>
+      <h1>$78.000</h1>
+    </ion-card-content>
+
+  </ion-card>
 </ion-content>

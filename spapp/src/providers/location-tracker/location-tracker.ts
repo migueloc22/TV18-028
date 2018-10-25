@@ -37,11 +37,12 @@ export class LocationTrackerProvider {
     // Background Tracking
 
     let config = {
-      desiredAccuracy: 0,
+      desiredAccuracy: 10,
       stationaryRadius: 20,
       distanceFilter: 10,
-      debug: false,
-      interval: 2000
+      debug: true,
+      interval: 3000,
+      stopOnTerminate: false,
     };
 
     this.backgroundGeolocation.configure(config).subscribe(
@@ -57,6 +58,8 @@ export class LocationTrackerProvider {
         this.zone.run(() => {
           this.lat = location.latitude;
           this.lng = location.longitude;
+          var user =JSON.parse(localStorage.getItem("user"));
+          this.cargarUsuario(user.num_documento, this.lat,this.lng);
         });
       },
       err => {
