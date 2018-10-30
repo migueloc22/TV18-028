@@ -21,21 +21,39 @@
   <h3>Current Longitude: {{locationTracker.lng}}</h3>
   <button ion-button full primary (click)="start()">Start Tracking</button>
   <button ion-button full primary (click)="stop()">Stop Tracking</button> -->
-  <button ion-button full primary  (click)="VER()"> click</button>
+  
   <ion-card>
-    <ion-item>
+    <!-- <ion-item>
     <ion-label>Fecha</ion-label>
-    <ion-select [(ngModel)]="gaming">
-      <ion-option value="nes">NES</ion-option>
-      <ion-option value="n64">Nintendo64</ion-option>
-      <ion-option value="ps">PlayStation</ion-option>
+    <ion-select  (ionChange)="CargarDatos()">
+        <ng-container *ngFor="let fecha of Fechas">
+            <ion-option *ngIf="fecha.fechaInicia == '2018/10/26'" selected="true"  value="{{fecha.fechaInicia}}" >{{fecha.fechaInicia}}-{{fecha.fechaResta}}</ion-option>
+            <ion-option  *ngIf="fecha.fechaInicia != '2018/10/26'" value="{{fecha.fechaInicia}}" >{{fecha.fechaInicia}}-{{fecha.fechaResta}}</ion-option>
+        </ng-container> -->
+        <!-- <ion-option *ngFor="let fecha of Fechas"  value="{{fecha.fechaInicia}}">{{fecha.fechaInicia}}-{{fecha.fechaResta}}</ion-option> -->
+    <!-- </ion-select>
+  </ion-item> -->
+  <ion-item>
+    <ion-label>Mes</ion-label>
+    <ion-select [(ngModel)]="month" (ionChange)="CargarDatos()">
+      <ion-option value="01">Enero</ion-option>
+      <ion-option value="02">Febrero</ion-option>
+      <ion-option value="03">Marcho</ion-option>
+      <ion-option value="04">Abril</ion-option>
+      <ion-option value="05">Mayo</ion-option>
+      <ion-option value="06">Junio</ion-option>
+      <ion-option value="07">Julio</ion-option>
+      <ion-option value="08">Agosto</ion-option>
+      <ion-option value="09">Septiembre</ion-option>
+      <ion-option value="10">Octubre</ion-option>
+      <ion-option value="11">Noviembre</ion-option>
+      <ion-option value="12" checked="true">December</ion-option>
     </ion-select>
   </ion-item>
   </ion-card>
   
   <ion-card>
-    <canvas baseChart [data]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [chartType]="lineChartType"
-      (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+    <canvas baseChart [data]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [chartType]="lineChartType">
     </canvas>
   </ion-card>
 

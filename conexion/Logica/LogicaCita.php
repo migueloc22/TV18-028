@@ -50,8 +50,12 @@ $postdata = file_get_contents("php://input");
                     $DatoCita-> ConfirmarCita($id_cita,$fk_estado_cita,$toltal,$visto);
                     break;
                 case 'FilterCita':
-                $filter=$request->filter;
-                $DatoCita->FilterCita($filter);
+                    $filter=$request->filter;
+                    $DatoCita->FilterCita($filter);
+                    break;
+                case 'reportePrestador':
+                    $filter=$request->filter;
+                    $DatoCita->reportePrestador($filter);
                     break;
             
             default:

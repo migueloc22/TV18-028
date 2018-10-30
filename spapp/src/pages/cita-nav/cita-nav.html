@@ -7,9 +7,9 @@
 <ion-header>
 
   <ion-navbar>
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title></ion-title>
   </ion-navbar>
 
@@ -17,16 +17,20 @@
 
 
 <ion-content padding class="s" scrollX="false" scrollY="false">
-    <agm-map  [zoom]=15>
-        
-      </agm-map>
-    <ion-fab right bottom >
-        <button ion-fab color="light" color="primary"><ion-icon name="arrow-dropleft"></ion-icon></button>
-        <ion-fab-list side="left">
-          <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
-          <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
-          <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
-          <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
-        </ion-fab-list>
-      </ion-fab>
+  <agm-map [zoom]=15>
+
+  </agm-map>
+  <ion-fab right bottom>
+    <button ion-fab color="light" color="primary">
+      <ion-icon name="arrow-dropleft"></ion-icon>
+    </button>
+    <ion-fab-list side="left">
+      <button ion-fab color="danger">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+      <button ion-fab color="secondary">
+        <ion-icon name="send"></ion-icon>
+      </button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>

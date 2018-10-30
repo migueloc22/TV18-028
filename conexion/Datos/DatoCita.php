@@ -130,5 +130,16 @@ class DatoCita{
           //  die;
             echo json_encode($array_dpto);
     }
+    function reportePrestador($filter){
+        $Query = "SELECT COUNT(id_cita) as numCita , SUM(toltal) as Ganancia FROM  cita  $filter";
+        $result = mysqli_query($this->cnn,$Query);
+            $array_dpto = array();
+
+            while($data = mysqli_fetch_assoc($result)){
+                $array_dpto[]=$data;
+            }
+          //  die;
+            echo json_encode($array_dpto);
+    }
 }
 ?>
