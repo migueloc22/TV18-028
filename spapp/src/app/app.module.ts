@@ -21,6 +21,8 @@ import {ConfirmarCitaPage} from '../pages/confirmar-cita/confirmar-cita';
 import {CitaDetallePage} from '../pages/cita-detalle/cita-detalle';
 import {CitaConfirmarPage} from '../pages/cita-confirmar/cita-confirmar';
 import {CitaNavPage} from '../pages/cita-nav/cita-nav';
+import {CitaIniciarPage} from "../pages/cita-iniciar/cita-iniciar";
+import { CitaTerminarPage } from "../pages/cita-terminar/cita-terminar";
 
 // api
 import { StatusBar } from '@ionic-native/status-bar';
@@ -37,6 +39,7 @@ import { BackgroundGeolocation} from '@ionic-native/background-geolocation';
 import { Geolocation } from '@ionic-native/geolocation';
 import { LocationTrackerProvider } from '../providers/location-tracker/location-tracker';
 import { ChartsModule } from 'ng2-charts';
+import { StarRatingModule } from 'ionic3-star-rating';
 
 
 @NgModule({
@@ -59,7 +62,9 @@ import { ChartsModule } from 'ng2-charts';
     ConfirmarCitaPage,
     CitaDetallePage,
     CitaConfirmarPage,
-    CitaNavPage
+    CitaNavPage,
+    CitaIniciarPage,
+    CitaTerminarPage
 
   ],
   imports: [
@@ -70,7 +75,8 @@ import { ChartsModule } from 'ng2-charts';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCAWIFGXpkhOT8-7G3o66tHcWiTE1n5H3k'
     }),
-    ChartsModule
+    ChartsModule,
+    StarRatingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -92,7 +98,9 @@ import { ChartsModule } from 'ng2-charts';
     ConfirmarCitaPage,
     CitaDetallePage,
     CitaConfirmarPage,
-    CitaNavPage
+    CitaNavPage,
+    CitaIniciarPage,
+    CitaTerminarPage
   ],
   providers: [
     StatusBar,

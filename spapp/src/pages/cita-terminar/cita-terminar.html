@@ -1,0 +1,31 @@
+<!--
+  Generated template for the CitaTerminarPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>citaTerminar</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-content>
+      <ionic3-star-rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#fffb3a" defaultColor="#ece8e8"
+        readonly="false" [rating]="rating">
+      </ionic3-star-rating>
+      Tu calilficación: {{rating}}
+      <ion-item>
+        <ion-textarea placeholder="Tap here" [(ngModel)]="note" name="note" autocomplete="on" autocorrect="on"></ion-textarea>
+      </ion-item>
+      <button ion-button clear full>Primary Clear</button>
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

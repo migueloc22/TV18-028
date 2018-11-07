@@ -17,18 +17,18 @@
 
 
 <ion-content padding class="s" scrollX="false" scrollY="false">
-  <agm-map [zoom]=15>
-
+  <agm-map [latitude]="lat" [longitude]="lng" [zoom]=15>
+    <agm-marker [latitude]="lat"  [longitude]="lng"></agm-marker>
   </agm-map>
   <ion-fab right bottom>
     <button ion-fab color="light" color="primary">
       <ion-icon name="arrow-dropleft"></ion-icon>
     </button>
     <ion-fab-list side="left">
-      <button ion-fab color="danger">
+      <button ion-fab color="danger" (click)="Cancelar()">
         <ion-icon name="trash"></ion-icon>
       </button>
-      <button ion-fab color="secondary">
+      <button ion-fab color="secondary" (click)="Iniciar()">
         <ion-icon name="send"></ion-icon>
       </button>
     </ion-fab-list>

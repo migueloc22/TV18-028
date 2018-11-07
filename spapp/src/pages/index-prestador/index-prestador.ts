@@ -116,6 +116,7 @@ export class IndexPrestadorPage {
   }
   Iniciar(ofertas){
     //console.log(ofertas);
+    localStorage.setItem("cita",JSON.stringify(ofertas));
     this.navCtrl.setRoot(CitaNavPage,ofertas);
     this.presentLoading();
   }
