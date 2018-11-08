@@ -46,7 +46,7 @@ export class CitaNavPage {
   }
   presentLoading() {
     const loader = this.loadingCtrl.create({
-      content: "Please wait...",
+      content: "Cargando...",
       duration: 3000
     });
     loader.present();

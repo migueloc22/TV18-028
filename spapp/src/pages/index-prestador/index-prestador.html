@@ -1,52 +1,62 @@
-
 <ion-header>
-
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
     <ion-title>Inicio</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding class="color">
-    <ion-refresher (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content>
-            pullingIcon="arrow-dropdown"
-            pullingText="Pull to refresh"
-            refreshingSpinner="circles"
-            refreshingText="Refreshing...">
-        </ion-refresher-content>
-      </ion-refresher>
-      <ion-card *ngFor="let cita of ofertas">
-          <ion-item>
-            <ion-icon name="calendar" item-start large></ion-icon>
-            <h2>Fecha de la cita</h2>
-            <p>{{cita.fecha_cita| date:'mediumDate'}}</p>
-          </ion-item>
-          <ion-item>
-            <ion-icon name="watch" item-start large></ion-icon>
-            <h2>Hora de la cita</h2>
-            <p>{{cita.hora_inicia}}</p>
-          </ion-item>
-          <ion-item>
-            <ion-icon name="paper" item-start large></ion-icon>
-            <h2>Estado</h2>
-            <p>{{cita.estado_cita}}</p>
-          </ion-item>
-      
-          <ion-item>
-            <button *ngIf="cita.fk_estado_cita==2" ion-button color="danger" icon-start clear item-end (click)="Confirmar(cita)">
-              <ion-icon name="eye"></ion-icon>
-              Confirmar
-            </button>
-            <button *ngIf="cita.fk_estado_cita==6" ion-button  icon-start clear item-end (click)="Iniciar(cita)">
-                <ion-icon name="eye"></ion-icon>
-                Iniciar
-              </button>
-          </ion-item>
-      
-        </ion-card>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+      pullingIcon="arrow-dropdown" pullingText="Pull to refresh"
+      refreshingSpinner="circles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-item class="color">
+    <ion-label>Estado de usuario</ion-label>
+    <ion-toggle  checked="true"></ion-toggle>
+  </ion-item>
+  <ion-card *ngFor="let cita of ofertas">
+    <ion-item>
+      <ion-icon name="calendar" item-start large></ion-icon>
+      <h2>Fecha de la cita</h2>
+      <p>{{ cita.fecha_cita | date: "mediumDate" }}</p>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="watch" item-start large></ion-icon>
+      <h2>Hora de la cita</h2>
+      <p>{{ cita.hora_inicia }}</p>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="paper" item-start large></ion-icon>
+      <h2>Estado</h2>
+      <p>{{ cita.estado_cita }}</p>
+    </ion-item>
+
+    <ion-item>
+      <button
+        *ngIf="cita.fk_estado_cita == 2"
+        ion-button
+        color="danger"
+        icon-start
+        clear
+        item-end
+        (click)="Confirmar(cita)"
+      >
+        <ion-icon name="eye"></ion-icon>
+        Confirmar
+      </button>
+      <button
+        *ngIf="cita.fk_estado_cita == 6"
+        ion-button
+        icon-start
+        clear
+        item-end
+        (click)="Iniciar(cita)"
+      >
+        <ion-icon name="eye"></ion-icon>
+        Iniciar
+      </button>
+    </ion-item>
+  </ion-card>
 </ion-content>
